@@ -1,7 +1,23 @@
 import Head from 'next/head';
 import Image from 'next/image';
+import { GetServerSideProps } from 'next';
 
-export default function Home() {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const headers = context?.req?.headers;
+  console.log(
+    '🚀 ~ file: index.tsx:7 ~ constgetServerSideProps:GetServerSideProps= ~ headers:',
+    headers
+  );
+  return {
+    props: {
+      headers,
+    },
+  };
+};
+
+//@ts-ignore
+export default function Home({ headers }) {
+  console.log('🚀 ~ file: index.tsx:20 ~ Home ~ headers:', headers);
   return (
     <>
       <Head>
@@ -21,7 +37,7 @@ export default function Home() {
               alt='logo'
             />
             <p className='text-center text-3xl p-6'>
-              America&apos;s #12{' '}
+              America&apos;s #20{' '}
               <span className='font-extrabold'>Meal Delivery Service</span>
             </p>
             <div className='p-6'>
